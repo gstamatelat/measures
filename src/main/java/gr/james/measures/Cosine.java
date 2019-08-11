@@ -53,23 +53,6 @@ public class Cosine<T> {
      */
     public Cosine(List<Double> a, List<Double> b) {
         this(a.iterator(), b.iterator());
-        /*if (a.size() == 0 || b.size() == 0) {
-            throw new IllegalArgumentException("Inputs cannot be empty");
-        }
-        if (a.size() != b.size()) {
-            throw new IllegalArgumentException("Inputs must have the same size");
-        }
-
-        double numerator = 0;
-        double denominatorA = 0;
-        double denominatorB = 0;
-        for (int i = 0; i < a.size(); i++) {
-            numerator += a.get(i) * b.get(i);
-            denominatorA += Math.pow(a.get(i), 2);
-            denominatorB += Math.pow(b.get(i), 2);
-        }
-
-        this.value = numerator / (Math.sqrt(denominatorA) * Math.sqrt(denominatorB));*/
     }
 
     /**

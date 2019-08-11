@@ -12,6 +12,7 @@
  * Statistical measures:
  * <ul>
  *     <li>{@link gr.james.measures.Cosine Cosine similarity}</li>
+ *     <li>{@link gr.james.measures.Pearson Pearson correlation coefficient}</li>
  * </ul>
  */
 package gr.james.measures;

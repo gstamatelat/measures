@@ -1,0 +1,50 @@
+plugins {
+    id 'java'
+    id 'maven'
+    id 'findbugs'
+}
+
+group 'gr.james'
+version '0.1'
+
+sourceCompatibility = 1.8
+
+repositories {
+    jcenter()
+}
+
+findbugs {
+    sourceSets = [sourceSets.main]
+    effort = "max"
+}
+
+wrapper {
+    gradleVersion = '4.4'
+}
+
+javadoc {
+    doLast {
+        new File(destinationDir, 'stylesheet.css').append(file('src/javadoc/stylesheet.css').text)
+        new File(destinationDir, 'script.js').append(file('src/javadoc/script.js').text)
+    }
+    options.overview('src/javadoc/overview.html')
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+}

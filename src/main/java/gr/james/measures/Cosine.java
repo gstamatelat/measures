@@ -21,7 +21,7 @@ public class Cosine<T> {
      * @throws IllegalArgumentException if either {@code a} or {@code b} is empty
      */
     public Cosine(Set<T> a, Set<T> b) {
-        if (a.size() == 0 || b.size() == 0) {
+        if (a.isEmpty() || b.isEmpty()) {
             throw new IllegalArgumentException("Inputs cannot be empty");
         }
         Set<T> big;

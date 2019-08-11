@@ -86,6 +86,7 @@ public class Cosine<T> {
         }
 
         this.value = numerator / (Math.sqrt(denominatorA) * Math.sqrt(denominatorB));
+        assert this.value >= 0 && this.value <= 1;
     }
 
     /**

@@ -12,7 +12,7 @@
  * Statistical measures:
  * <ul>
  *     <li>{@link gr.james.measures.Cosine Cosine similarity}</li>
- *     <li>{@link gr.james.measures.MutualInformation Normalized mutual information}</li>
+ *     <li>{@link gr.james.measures.MutualInformation Mutual information}</li>
  *     <li>{@link gr.james.measures.Pearson Pearson correlation coefficient}</li>
  * </ul>
  */

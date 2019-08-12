@@ -6,7 +6,8 @@ import java.util.Set;
  * Normalized mutual information implementation.
  */
 public class MutualInformation<T> {
-    private final double value;
+    private final double normalizedMutualInformation;
+    private final double mutualInformation;
 
     /**
      * Create a new {@link MutualInformation} from the given sets.
@@ -69,9 +70,11 @@ public class MutualInformation<T> {
                 (Double.isNaN(pmi3) ? 0.0 : pmi3) +
                 (Double.isNaN(pmi4) ? 0.0 : pmi4);
 
-        this.value = -(2 * mi) / (entropy1 + entropy2);
+        this.mutualInformation = mi;
+        this.normalizedMutualInformation = -(2 * mi) / (entropy1 + entropy2);
 
-        assert this.value >= 0 - 1e-4 && this.value <= 1 + 1e-4;
+        assert this.normalizedMutualInformation >= 0 - 1e-4 && this.normalizedMutualInformation <= 1 + 1e-4;
+        assert this.mutualInformation >= 0;
     }
 
     /**
@@ -79,7 +82,16 @@ public class MutualInformation<T> {
      *
      * @return the Normalized mutual information of the inputs that this instance was created from
      */
-    public double value() {
-        return this.value;
+    public double normalizedMutualInformation() {
+        return this.normalizedMutualInformation;
+    }
+
+    /**
+     * Returns the Mutual information of the inputs that this instance was created from.
+     *
+     * @return the Mutual information of the inputs that this instance was created from
+     */
+    public double mutualInformation() {
+        return this.mutualInformation;
     }
 }

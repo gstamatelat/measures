@@ -5,7 +5,7 @@ import java.util.Set;
 /**
  * Simple Matching coefficient implementation.
  */
-public class SimpleMatching<T> {
+public class SimpleMatching {
     private final double value;
 
     /**
@@ -17,10 +17,11 @@ public class SimpleMatching<T> {
      * @param a     one set
      * @param b     the other set
      * @param world the world set
+     * @param <T>   the type of elements in the inputs
      * @throws NullPointerException     if any input is {@code null}
      * @throws IllegalArgumentException if either {@code a} or {@code b} is empty
      */
-    public SimpleMatching(Set<T> a, Set<T> b, Set<T> world) {
+    public <T> SimpleMatching(Set<T> a, Set<T> b, Set<T> world) {
         if (a.isEmpty() || b.isEmpty()) {
             throw new IllegalArgumentException("Inputs cannot be empty");
         }

@@ -6,7 +6,7 @@ import java.util.Set;
 /**
  * Pearson correlation coefficient implementation.
  */
-public class Pearson<T> {
+public class Pearson {
     private final double value;
 
     /**
@@ -20,10 +20,11 @@ public class Pearson<T> {
      * @param a     one set
      * @param b     the other set
      * @param world the world set
+     * @param <T>   the type of elements in the inputs
      * @throws NullPointerException     if either {@code a} or {@code b} is {@code null}
      * @throws IllegalArgumentException if either {@code a} or {@code b} is empty
      */
-    public Pearson(Set<T> a, Set<T> b, Set<T> world) {
+    public <T> Pearson(Set<T> a, Set<T> b, Set<T> world) {
         if (a.isEmpty() || b.isEmpty()) {
             throw new IllegalArgumentException("Inputs cannot be empty");
         }

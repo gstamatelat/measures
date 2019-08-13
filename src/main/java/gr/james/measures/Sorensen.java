@@ -5,18 +5,19 @@ import java.util.Set;
 /**
  * Sorensen-Dice coefficient implementation.
  */
-public class Sorensen<T> {
+public class Sorensen {
     private final double value;
 
     /**
      * Create a new {@link Sorensen} from the given sets.
      *
-     * @param a one set
-     * @param b the other set
+     * @param a   one set
+     * @param b   the other set
+     * @param <T> the type of elements in the inputs
      * @throws NullPointerException     if either {@code a} or {@code b} is {@code null}
      * @throws IllegalArgumentException if either {@code a} or {@code b} is empty
      */
-    public Sorensen(Set<T> a, Set<T> b) {
+    public <T> Sorensen(Set<T> a, Set<T> b) {
         if (a.isEmpty() || b.isEmpty()) {
             throw new IllegalArgumentException("Inputs cannot be empty");
         }

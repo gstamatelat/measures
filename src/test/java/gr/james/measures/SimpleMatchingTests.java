@@ -16,7 +16,7 @@ public class SimpleMatchingTests {
         final Set<Integer> a = new HashSet<>(Arrays.asList(1, 2, 3, 4));
         final Set<Integer> b = new HashSet<>(Arrays.asList(1, 2, 3, 4));
         final Set<Integer> world = new HashSet<>(Arrays.asList(1, 2, 3, 4));
-        Assert.assertEquals(1.0, new SimpleMatching<>(a, b, world).value(), 1e-8);
+        Assert.assertEquals(1.0, new SimpleMatching(a, b, world).value(), 1e-8);
     }
 
     /**
@@ -27,7 +27,7 @@ public class SimpleMatchingTests {
         final Set<Integer> a = new HashSet<>(Arrays.asList(1, 2));
         final Set<Integer> b = new HashSet<>(Arrays.asList(3, 4));
         final Set<Integer> world = new HashSet<>(Arrays.asList(1, 2, 3, 4));
-        Assert.assertEquals(0.0, new SimpleMatching<>(a, b, world).value(), 1e-8);
+        Assert.assertEquals(0.0, new SimpleMatching(a, b, world).value(), 1e-8);
     }
 
     /**
@@ -38,7 +38,7 @@ public class SimpleMatchingTests {
         final Set<Integer> a = new HashSet<>(Arrays.asList(1, 2, 3));
         final Set<Integer> b = new HashSet<>(Arrays.asList(3, 4, 5));
         final Set<Integer> world = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
-        Assert.assertEquals(2.0 / 6.0, new SimpleMatching<>(a, b, world).value(), 1e-8);
+        Assert.assertEquals(2.0 / 6.0, new SimpleMatching(a, b, world).value(), 1e-8);
     }
 
     /**
@@ -49,7 +49,7 @@ public class SimpleMatchingTests {
         final Set<Integer> a = new HashSet<>(Arrays.asList(1, 2));
         final Set<Integer> b = new HashSet<>(Arrays.asList(2, 3, 4));
         final Set<Integer> world = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5));
-        Assert.assertEquals(new SimpleMatching<>(b, a, world).value(), new SimpleMatching<>(a, b, world).value(), 1e-8);
-        Assert.assertEquals(2.0 / 5.0, new SimpleMatching<>(a, b, world).value(), 1e-8);
+        Assert.assertEquals(new SimpleMatching(b, a, world).value(), new SimpleMatching(a, b, world).value(), 1e-8);
+        Assert.assertEquals(2.0 / 5.0, new SimpleMatching(a, b, world).value(), 1e-8);
     }
 }

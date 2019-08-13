@@ -15,7 +15,7 @@ public class JaccardTests {
     public void identity() {
         final Set<Integer> a = new HashSet<>(Arrays.asList(1, 2, 3, 4));
         final Set<Integer> b = new HashSet<>(Arrays.asList(1, 2, 3, 4));
-        Assert.assertEquals(1.0, new Jaccard<>(a, b).value(), 1e-8);
+        Assert.assertEquals(1.0, new Jaccard(a, b).value(), 1e-8);
     }
 
     /**
@@ -25,7 +25,7 @@ public class JaccardTests {
     public void zero() {
         final Set<Integer> a = new HashSet<>(Arrays.asList(1, 2));
         final Set<Integer> b = new HashSet<>(Arrays.asList(3, 4));
-        Assert.assertEquals(0.0, new Jaccard<>(a, b).value(), 1e-8);
+        Assert.assertEquals(0.0, new Jaccard(a, b).value(), 1e-8);
     }
 
     /**
@@ -35,7 +35,7 @@ public class JaccardTests {
     public void normal() {
         final Set<Integer> a = new HashSet<>(Arrays.asList(1, 2, 3));
         final Set<Integer> b = new HashSet<>(Arrays.asList(3, 4, 5));
-        Assert.assertEquals(1.0 / 5.0, new Jaccard<>(a, b).value(), 1e-8);
+        Assert.assertEquals(1.0 / 5.0, new Jaccard(a, b).value(), 1e-8);
     }
 
     /**
@@ -45,7 +45,7 @@ public class JaccardTests {
     public void commutativity() {
         final Set<Integer> a = new HashSet<>(Arrays.asList(1, 2));
         final Set<Integer> b = new HashSet<>(Arrays.asList(2, 3, 4));
-        Assert.assertEquals(new Jaccard<>(b, a).value(), new Jaccard<>(a, b).value(), 1e-8);
-        Assert.assertEquals(1.0 / 4.0, new Jaccard<>(a, b).value(), 1e-8);
+        Assert.assertEquals(new Jaccard(b, a).value(), new Jaccard(a, b).value(), 1e-8);
+        Assert.assertEquals(1.0 / 4.0, new Jaccard(a, b).value(), 1e-8);
     }
 }

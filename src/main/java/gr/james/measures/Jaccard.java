@@ -5,18 +5,19 @@ import java.util.Set;
 /**
  * Jaccard index implementation.
  */
-public class Jaccard<T> {
+public class Jaccard {
     private final double value;
 
     /**
      * Create a new {@link Jaccard} from the given sets.
      *
-     * @param a one set
-     * @param b the other set
+     * @param a   one set
+     * @param b   the other set
+     * @param <T> the type of elements in the inputs
      * @throws NullPointerException     if either {@code a} or {@code b} is {@code null}
      * @throws IllegalArgumentException if either {@code a} or {@code b} is empty
      */
-    public Jaccard(Set<T> a, Set<T> b) {
+    public <T> Jaccard(Set<T> a, Set<T> b) {
         if (a.isEmpty() || b.isEmpty()) {
             throw new IllegalArgumentException("Inputs cannot be empty");
         }

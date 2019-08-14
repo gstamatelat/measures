@@ -21,7 +21,7 @@ public class Pearson {
      * @param b     the other set
      * @param world the world set
      * @param <T>   the type of elements in the inputs
-     * @throws NullPointerException     if either {@code a} or {@code b} is {@code null}
+     * @throws NullPointerException     if either {@code a}, {@code b} or {@code world} is {@code null}
      * @throws IllegalArgumentException if either {@code a} or {@code b} is empty
      */
     public <T> Pearson(Set<T> a, Set<T> b, Set<T> world) {
@@ -61,6 +61,7 @@ public class Pearson {
      *
      * @param a the one vector
      * @param b the other vector
+     * @throws NullPointerException     if either {@code a} or {@code b} is {@code null}
      * @throws IllegalArgumentException if either {@code a} or {@code b} is empty
      * @throws IllegalArgumentException if {@code a} and {@code b} are of different size
      * @throws IllegalArgumentException if some property of {@code a} or {@code b} prevents their average values to be

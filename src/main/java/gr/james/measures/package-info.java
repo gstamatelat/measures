@@ -15,6 +15,7 @@
  *     <li>{@link gr.james.measures.Kendall Kendall rank correlation coefficient}</li>
  *     <li>{@link gr.james.measures.MutualInformation Mutual information}</li>
  *     <li>{@link gr.james.measures.Pearson Pearson correlation coefficient}</li>
+ *     <li>{@link gr.james.measures.Spearman Spearman's rank correlation coefficient}</li>
  * </ul>
  */
 package gr.james.measures;

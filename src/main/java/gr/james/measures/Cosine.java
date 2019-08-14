@@ -48,6 +48,7 @@ public class Cosine<T> {
      *
      * @param a the one vector
      * @param b the other vector
+     * @throws NullPointerException     if either {@code a} or {@code b} is {@code null}
      * @throws IllegalArgumentException if either {@code a} or {@code b} is empty
      * @throws IllegalArgumentException if {@code a} and {@code b} are of different size
      */

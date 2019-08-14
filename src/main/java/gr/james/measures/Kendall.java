@@ -14,6 +14,7 @@ public class Kendall {
      * @param a   the one vector
      * @param b   the other vector
      * @param <T> the type of elements in the inputs
+     * @throws NullPointerException     if either {@code a} or {@code b} is {@code null}
      * @throws IllegalArgumentException if either {@code a} or {@code b} is empty
      * @throws IllegalArgumentException if {@code a} and {@code b} are of different size
      */

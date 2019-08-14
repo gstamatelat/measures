@@ -19,7 +19,7 @@ public class MutualInformation {
      * @param b     the other set
      * @param world the world set
      * @param <T>   the type of elements in the inputs
-     * @throws NullPointerException     if either {@code a} or {@code b} is {@code null}
+     * @throws NullPointerException     if either {@code a}, {@code b} or {@code world} is {@code null}
      * @throws IllegalArgumentException if either {@code a} or {@code b} is empty
      */
     public <T> MutualInformation(Set<T> a, Set<T> b, Set<T> world) {

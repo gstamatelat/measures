@@ -120,7 +120,7 @@ public class Pearson {
      * @throws IllegalArgumentException if {@code population} is empty
      * @throws IllegalArgumentException if some property of {@code mapping1} or {@code mapping2} prevents their average
      *                                  values to be computed
-     * @throws RuntimeException         as propagated from the {@link ToDoubleFunction#applyAsDouble(T)} method
+     * @throws RuntimeException         as propagated from the {@link ToDoubleFunction#applyAsDouble(Object)} method
      */
     public <T> Pearson(Set<T> population, ToDoubleFunction<T> mapping1, ToDoubleFunction<T> mapping2) {
         if (population.isEmpty()) {

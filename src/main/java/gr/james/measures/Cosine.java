@@ -7,7 +7,7 @@ import java.util.Set;
 /**
  * Cosine similarity implementation.
  */
-public class Cosine<T> {
+public class Cosine {
     private final double value;
 
     /**
@@ -15,12 +15,13 @@ public class Cosine<T> {
      * <p>
      * This form of Cosine similarity is identical to the Otsuka-Ochiai coefficient.
      *
-     * @param a one set
-     * @param b the other set
+     * @param a   one set
+     * @param b   the other set
+     * @param <T> the type of elements in the inputs
      * @throws NullPointerException     if either {@code a} or {@code b} is {@code null}
      * @throws IllegalArgumentException if either {@code a} or {@code b} is empty
      */
-    public Cosine(Set<T> a, Set<T> b) {
+    public <T> Cosine(Set<T> a, Set<T> b) {
         if (a.isEmpty() || b.isEmpty()) {
             throw new IllegalArgumentException("Inputs cannot be empty");
         }

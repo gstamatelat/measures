@@ -1,7 +1,9 @@
 package gr.james.measures;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.function.ToDoubleFunction;
 
 /**
  * Pearson correlation coefficient implementation.
@@ -62,6 +64,7 @@ public class Pearson {
      * @param a the one vector
      * @param b the other vector
      * @throws NullPointerException     if either {@code a} or {@code b} is {@code null}
+     * @throws NullPointerException     if any element inside {@code a} or {@code b} is {@code null}
      * @throws IllegalArgumentException if either {@code a} or {@code b} is empty
      * @throws IllegalArgumentException if {@code a} and {@code b} are of different size
      * @throws IllegalArgumentException if some property of {@code a} or {@code b} prevents their average values to be
@@ -71,9 +74,6 @@ public class Pearson {
         if (a.isEmpty() || b.isEmpty()) {
             throw new IllegalArgumentException("Inputs cannot be empty");
         }
-        if (a.size() != b.size()) {
-            throw new IllegalArgumentException("Inputs must have the same size");
-        }
 
         final double averageA = a.stream().mapToDouble(x -> x).average()
                 .orElseThrow(() -> new IllegalArgumentException("Can't get the average of a"));
@@ -81,19 +81,70 @@ public class Pearson {
                 .orElseThrow(() -> new IllegalArgumentException("Can't get the average of b"));
 
         double cov = 0;
-        for (int i = 0; i < a.size(); i++) {
-            cov += (a.get(i) - averageA) * (b.get(i) - averageB);
-        }
-        cov /= a.size();
-
         double varA = 0;
         double varB = 0;
-        for (int i = 0; i < a.size(); i++) {
-            varA += Math.pow(a.get(i) - averageA, 2);
-            varB += Math.pow(b.get(i) - averageB, 2);
+        final Iterator<Double> aIterator = a.iterator();
+        final Iterator<Double> bIterator = b.iterator();
+        while (aIterator.hasNext() && bIterator.hasNext()) {
+            final Double aNext = aIterator.next() - averageA;
+            final Double bNext = bIterator.next() - averageB;
+            cov += aNext * bNext;
+            varA += Math.pow(aNext, 2);
+            varB += Math.pow(bNext, 2);
         }
+        if (aIterator.hasNext() || bIterator.hasNext()) {
+            throw new IllegalArgumentException("Inputs must have the same size");
+        }
+
+        cov /= a.size();
         varA /= a.size();
         varB /= b.size();
+
+        varA = Math.sqrt(varA);
+        varB = Math.sqrt(varB);
+
+        this.value = cov / (varA * varB);
+        assert this.value >= -1 && this.value <= 1;
+    }
+
+    /**
+     * Create a new {@link Pearson} from the given arguments.
+     *
+     * @param population the population set
+     * @param mapping1   a function representing one input
+     * @param mapping2   a function representing one input
+     * @param <T>        the type of elements in the inputs
+     * @throws NullPointerException     if any input is {@code null}
+     * @throws NullPointerException     if any value returned from either {@code mapping1} or {@code mapping2} is
+     *                                  {@code null}
+     * @throws IllegalArgumentException if {@code population} is empty
+     * @throws IllegalArgumentException if some property of {@code mapping1} or {@code mapping2} prevents their average
+     *                                  values to be computed
+     * @throws RuntimeException         as propagated from the {@link ToDoubleFunction#applyAsDouble(T)} method
+     */
+    public <T> Pearson(Set<T> population, ToDoubleFunction<T> mapping1, ToDoubleFunction<T> mapping2) {
+        if (population.isEmpty()) {
+            throw new IllegalArgumentException("Inputs cannot be empty");
+        }
+
+        final double averageA = population.stream().mapToDouble(mapping1).average()
+                .orElseThrow(() -> new IllegalArgumentException("Can't get the average of a"));
+        final double averageB = population.stream().mapToDouble(mapping2).average()
+                .orElseThrow(() -> new IllegalArgumentException("Can't get the average of b"));
+
+        double cov = 0;
+        double varA = 0;
+        double varB = 0;
+        for (T t : population) {
+            cov += (mapping1.applyAsDouble(t) - averageA) * (mapping2.applyAsDouble(t) - averageB);
+            varA += Math.pow(mapping1.applyAsDouble(t) - averageA, 2);
+            varB += Math.pow(mapping2.applyAsDouble(t) - averageB, 2);
+        }
+
+        cov /= population.size();
+        varA /= population.size();
+        varB /= population.size();
+
         varA = Math.sqrt(varA);
         varB = Math.sqrt(varB);
 

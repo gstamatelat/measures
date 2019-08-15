@@ -16,3 +16,25 @@ Statistical measures:
 - Mutual information
 - Pearson correlation coefficient
 - Spearman's rank correlation coefficient
+
+## Using
+
+Measures is published to
+[jcenter](https://bintray.com/gstamatelat/measures/measures). You
+can add a dependency from your project as follows:
+
+Using Maven
+
+```xml
+<dependency>
+  <groupId>gr.james</groupId>
+  <artifactId>measures</artifactId>
+  <version>0.1</version>
+</dependency>
+```
+
+Using Gradle
+
+```
+compile 'gr.james:measures:0.1'
+```

@@ -1,5 +1,5 @@
 /**
- * Main package.
+ * The main package comprising the implementation of the measures.
  * <p>
  * Set theoretic measures:
  * <ul>

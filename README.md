@@ -5,17 +5,18 @@ A collection of various distance/similarity, set theoretic and statistical measu
 Set theoretic measures:
 
 - Jaccard index
+- Mutual information
 - Overlap coefficient
 - Simple Matching coefficient
 - Sorensen-Dice coefficient
 
-Statistical measures:
-
-- Cosine similarity
+Rank correlation measures:
 - Kendall rank correlation coefficient
-- Mutual information
-- Pearson correlation coefficient
 - Spearman's rank correlation coefficient
+
+Quantity correlation measures:
+- Cosine similarity
+- Pearson correlation coefficient
 
 ## Using
 

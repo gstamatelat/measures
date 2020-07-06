@@ -1,7 +1,6 @@
 package gr.james.measures;
 
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 import java.util.function.ToDoubleFunction;
 
@@ -60,6 +59,10 @@ public class Pearson {
 
     /**
      * Create a new {@link Pearson} from the given {@link Double} vectors.
+     * <p>
+     * This method assumes that elements are matched between the input vectors by index. For example, the first element
+     * of the iterator of {@code a} will be matched to the first elements of the iterator of {@code b}. As a result,
+     * the input {@link Iterable iterables} also need to have deterministic {@link Iterator iterators}.
      *
      * @param a the one vector
      * @param b the other vector
@@ -67,18 +70,26 @@ public class Pearson {
      * @throws NullPointerException     if any element inside {@code a} or {@code b} is {@code null}
      * @throws IllegalArgumentException if either {@code a} or {@code b} is empty
      * @throws IllegalArgumentException if {@code a} and {@code b} are of different size
-     * @throws IllegalArgumentException if some property of {@code a} or {@code b} prevents their average values to be
-     *                                  computed
      */
-    public Pearson(List<Double> a, List<Double> b) {
-        if (a.isEmpty() || b.isEmpty()) {
+    public Pearson(Iterable<Double> a, Iterable<Double> b) {
+        if (!a.iterator().hasNext() || !b.iterator().hasNext()) {
             throw new IllegalArgumentException("Inputs cannot be empty");
         }
 
-        final double averageA = a.stream().mapToDouble(x -> x).average()
-                .orElseThrow(() -> new IllegalArgumentException("Can't get the average of a"));
-        final double averageB = b.stream().mapToDouble(x -> x).average()
-                .orElseThrow(() -> new IllegalArgumentException("Can't get the average of b"));
+        int aSize = 0;
+        double averageA = 0;
+        int bSize = 0;
+        double averageB = 0;
+        for (Double x : a) {
+            aSize++;
+            averageA += x;
+        }
+        for (Double x : b) {
+            bSize++;
+            averageB += x;
+        }
+        averageA /= aSize;
+        averageB /= bSize;
 
         double cov = 0;
         double varA = 0;
@@ -96,9 +107,9 @@ public class Pearson {
             throw new IllegalArgumentException("Inputs must have the same size");
         }
 
-        cov /= a.size();
-        varA /= a.size();
-        varB /= b.size();
+        cov /= aSize;
+        varA /= aSize;
+        varB /= bSize;
 
         varA = Math.sqrt(varA);
         varB = Math.sqrt(varB);

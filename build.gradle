@@ -1,5 +1,5 @@
 plugins {
-    id 'java'
+    id 'java-library'
     id 'maven-publish'
     id "com.github.spotbugs" version "4.4.4"
 }
@@ -16,6 +16,19 @@ repositories {
 java {
     withJavadocJar()
     withSourcesJar()
+}
+
+publishing {
+    publications {
+        library(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url = uri("${buildDir}/publishing-repository")
+        }
+    }
 }
 
 wrapper {

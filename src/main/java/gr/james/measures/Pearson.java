@@ -61,7 +61,7 @@ public class Pearson {
      * Create a new {@link Pearson} from the given {@link Double} vectors.
      * <p>
      * This method assumes that elements are matched between the input vectors by index. For example, the first element
-     * of the iterator of {@code a} will be matched to the first elements of the iterator of {@code b}. As a result,
+     * of the iterator of {@code a} will be matched to the first element of the iterator of {@code b}. As a result,
      * the input {@link Iterable iterables} also need to have deterministic {@link Iterator iterators}.
      *
      * @param a the one vector
@@ -122,7 +122,7 @@ public class Pearson {
      * Create a new {@link Pearson} from the given {@link Double} iterators.
      * <p>
      * This method assumes that elements are matched between the input vectors by index. For example, the first element
-     * of the {@code a} iterator will be matched to the first elements of the {@code b} iterator.
+     * of the {@code a} iterator will be matched to the first element of the {@code b} iterator.
      * <p>
      * This method is executed in a single pass using the formula in the Wikipedia article but can sometimes be
      * numerically unstable.

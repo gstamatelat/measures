@@ -30,12 +30,12 @@ Using Maven
 <dependency>
   <groupId>gr.james</groupId>
   <artifactId>measures</artifactId>
-  <version>0.2</version>
+  <version>0.3</version>
 </dependency>
 ```
 
 Using Gradle
 
 ```
-compile 'gr.james:measures:0.2'
+compile 'gr.james:measures:0.3'
 ```

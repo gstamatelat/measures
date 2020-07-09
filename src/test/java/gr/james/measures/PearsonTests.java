@@ -3,10 +3,7 @@ package gr.james.measures;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class PearsonTests {
     /**
@@ -84,5 +81,16 @@ public class PearsonTests {
         final List<Double> b = Arrays.asList(2.0, 4.0, 4.0);
         Assert.assertEquals(new Pearson(b, a).value(), new Pearson(a, b).value(), 1e-8);
         Assert.assertEquals(2 / Math.sqrt(7), new Pearson(a, b).value(), 1e-8);
+    }
+
+    /**
+     * The definition of {@link Pearson#Pearson(Iterable, Iterable)} must be equivalent to
+     * {@link Pearson#Pearson(Iterator, Iterator)}.
+     */
+    @Test
+    public void iteratorEquality() {
+        final List<Double> a = Arrays.asList(1.0, 2.0, 4.0);
+        final List<Double> b = Arrays.asList(2.0, 4.0, 4.0);
+        Assert.assertEquals(new Pearson(a, b).value(), new Pearson(a.iterator(), b.iterator()).value(), 1e-8);
     }
 }

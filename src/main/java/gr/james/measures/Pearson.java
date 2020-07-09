@@ -119,6 +119,53 @@ public class Pearson {
     }
 
     /**
+     * Create a new {@link Pearson} from the given {@link Double} iterators.
+     * <p>
+     * This method assumes that elements are matched between the input vectors by index. For example, the first element
+     * of the {@code a} iterator will be matched to the first elements of the {@code b} iterator.
+     * <p>
+     * This method is executed in a single pass using the formula in the Wikipedia article but can sometimes be
+     * numerically unstable.
+     *
+     * @param a the one iterator
+     * @param b the other iterator
+     * @throws NullPointerException     if either {@code a} or {@code b} is {@code null}
+     * @throws NullPointerException     if any element inside {@code a} or {@code b} is {@code null}
+     * @throws IllegalArgumentException if either {@code a} or {@code b} is empty
+     * @throws IllegalArgumentException if {@code a} and {@code b} are of different size
+     */
+    public Pearson(Iterator<Double> a, Iterator<Double> b) {
+        if (!a.hasNext() || !b.hasNext()) {
+            throw new IllegalArgumentException("Inputs cannot be empty");
+        }
+
+        int n = 0;
+        double aSum = 0;
+        double bSum = 0;
+        double aSquaredSum = 0;
+        double bSquaredSum = 0;
+        double productSum = 0;
+
+        while (a.hasNext() && b.hasNext()) {
+            final double aNext = a.next();
+            final double bNext = b.next();
+            n++;
+            aSum += aNext;
+            bSum += bNext;
+            aSquaredSum += aNext * aNext;
+            bSquaredSum += bNext * bNext;
+            productSum += aNext * bNext;
+        }
+        if (a.hasNext() || b.hasNext()) {
+            throw new IllegalArgumentException("Inputs must have the same size");
+        }
+
+        this.value = (n * productSum - aSum * bSum) / (Math.sqrt(n * aSquaredSum - aSum * aSum) * Math.sqrt(n * bSquaredSum - bSum * bSum));
+
+        assert this.value >= -1 && this.value <= 1;
+    }
+
+    /**
      * Create a new {@link Pearson} from the given arguments.
      *
      * @param population the population set

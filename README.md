@@ -20,9 +20,7 @@ Quantity correlation measures:
 
 ## Using
 
-Measures is published to
-[jcenter](https://bintray.com/gstamatelat/measures/measures). You
-can add a dependency from your project as follows:
+You can add a dependency from your project as follows:
 
 Using Maven
 
@@ -36,6 +34,7 @@ Using Maven
 
 Using Gradle
 
-```
-compile 'gr.james:measures:0.3'
+```gradle
+implementation 'gr.james:measures:0.3' // Runtime
+api            'gr.james:measures:0.3' // Public API
 ```

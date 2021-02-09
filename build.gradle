@@ -1,7 +1,7 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
-    id "com.github.spotbugs" version "4.4.4"
+    id "com.github.spotbugs" version "4.6.0"
 }
 
 group 'gr.james'
@@ -10,7 +10,7 @@ version '0.3'
 sourceCompatibility = 1.8
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 java {
@@ -18,10 +18,38 @@ java {
     withSourcesJar()
 }
 
+spotbugs {
+    spotbugsTest.enabled = false
+    effort = "max"
+}
+
 publishing {
     publications {
-        library(MavenPublication) {
+        mavenJava(MavenPublication) {
             from components.java
+            pom {
+                name = 'Measures'
+                description = 'A collection of various distance/similarity, set theoretic and statistical measures in Java 8'
+                url = 'https://github.com/gstamatelat/measures'
+                licenses {
+                    license {
+                        name = 'The MIT License'
+                        url = 'https://opensource.org/licenses/MIT'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'gstamatelat'
+                        name = 'Giorgos Stamatelatos'
+                        email = 'gstamatelat@gmail.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:https://github.com/gstamatelat/measures.git'
+                    developerConnection = 'scm:git:git@github.com:gstamatelat/measures.git'
+                    url = 'https://github.com/gstamatelat/measures'
+                }
+            }
         }
     }
     repositories {

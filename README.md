@@ -1,5 +1,7 @@
 # Measures
 
+**This repository has been replaced by [stats](https://github.com/gstamatelat/stats).**
+
 A collection of various distance/similarity, set theoretic and statistical measures in Java 8.
 
 Set theoretic measures:
